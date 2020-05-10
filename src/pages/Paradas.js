@@ -3,15 +3,20 @@ import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, Alert, Moda
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import api from '../services/Inthegra.js'
 import { getHeaders, getToken, email, senha, api_key } from '../services/Inthegra';
 
 
-function Main(){
+function Main({ navigation }){
 
     const [currentRegion, setCurrentRegion] = useState(null); 
     const [modalVisible, setModalVisible] = useState(false);    
     const [todasParadas, setParadas] = useState([]);
+
+    function navigateBack() {
+        navigation.goBack()
+      }
 
     class Parada{ 
         constructor(CodigoParada, Denomicao, Endereco, Lat, Long){
@@ -49,7 +54,17 @@ function Main(){
 
     return(  
         <>
-        <MapView mapType={'standard'} initialRegion={currentRegion} style={styles.map} showsUserLocation={true}>      
+        <MapView 
+        mapType={'standard'} 
+        initialRegion={currentRegion} 
+        style={styles.map} 
+        showsUserLocation={true}
+        userLocationPriority="high"
+        userLocationUpdateInterval="5000"        
+        rotateEnabled={false}
+        toolbarEnabled={false}
+        loadingEnabled={true}
+        >      
 
         
         </MapView>         
@@ -57,7 +72,7 @@ function Main(){
         <TextInput 
           style={styles.searchInput}
           placeholder="Procurar paradas"
-          placeholderTextColor="#999"
+          placeholderTextColor="#5a748c"
           autoCapitalize="words"
           autoCorrect={true}  
           maxLength={50}       
@@ -69,10 +84,15 @@ function Main(){
       </SafeAreaView>
            
            <View style={styles.containerButtons}>
+           <TouchableOpacity  onPress={navigateBack} style={styles.backButton}>
+                    <FontAwesome name="arrow-circle-left" size={35} color="#fff" /> 
+                    
+                </TouchableOpacity>
+                
                     <TouchableOpacity onPress={() => {
                         setModalVisible(true);
                         }} style={styles.infoService}>
-                        <MaterialIcons name="info" size={30} color="#fff" />
+                        <MaterialIcons name="info" size={35} color="#fff" />
                     </TouchableOpacity>  
             </View>
 
@@ -114,16 +134,16 @@ const styles = StyleSheet.create({
     containerButtons :{
         flexDirection :'column',
         position: 'absolute',
-        top: 20, 
-        left: 20, 
+        top: 45, 
+        left: 15, 
         
     },
     infoService: {
         flexDirection :'column',
-        width: 50,
-        height: 50,
-        backgroundColor: '#17161B',
-        borderRadius: 5,
+        width: 60,
+        height: 60,
+        backgroundColor: '#28405e',
+        borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: "#000",
@@ -149,12 +169,12 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 50,       
         backgroundColor: '#FFF',
-        color: '#333',
-        borderRadius: 5,
+        color: '#28405e',
+        borderRadius: 25,
         paddingHorizontal: 20,
         fontSize: 17,
         shadowColor: '#000',
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.5,
         shadowOffset: {
             width: 4,
             height: 4
@@ -164,8 +184,8 @@ const styles = StyleSheet.create({
     loadButton: {
         width: 50,
         height: 50,
-        backgroundColor: '#17161B',
-        borderRadius: 5,
+        backgroundColor: '#28405e',
+        borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 15,
@@ -189,6 +209,8 @@ const styles = StyleSheet.create({
   },
     modalView: {
         width: '85%',
+        borderWidth: 1,
+        borderColor: "#28405e",
         backgroundColor: "#fff",
         borderRadius: 5,
         padding: 35,
@@ -205,7 +227,7 @@ const styles = StyleSheet.create({
         
     },
     openButton: {
-        backgroundColor: "#17161B",
+        backgroundColor: "#28405e",
         borderRadius: 5,
         padding: 10,
         paddingLeft: 30,
@@ -222,12 +244,30 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 16,
         textAlign: "justify",
-        color: '#17161B',
+        color: '#28405e',
     },
     textLink: {
         color: '#0077ff',
     },
-
+    backButton: {
+        backgroundColor: '#28405e',
+        height: 60,
+        width: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 12,
+        borderRadius: 30,
+        alignItems: "center",
+            
+          shadowColor: "#000000",
+          shadowOffset: {
+              width: 0,
+              height: 3
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+      },
 });
 
 

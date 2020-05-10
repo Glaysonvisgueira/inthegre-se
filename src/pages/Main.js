@@ -20,6 +20,9 @@ function Main({ navigation }){
                 blurRadius={1}
             />
         </View>
+        <View style={{position: 'absolute', marginLeft: 30,marginTop: 29,}}>
+            <Text>Versão: 0.6.2</Text>
+            </View>
         <View style={styles.containerMenu}>
                 <Image 
                     source={logo} 
@@ -118,7 +121,7 @@ const styles = StyleSheet.create({
     botao:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 70,
+        marginHorizontal: 50,
         marginTop: 20,
         marginBottom: 20,
         height: 40,                 

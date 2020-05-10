@@ -27,40 +27,42 @@ function Main({ navigation }){
     }
 
     return(
-        <>
-          <View style={styles.containerImage}> 
-              <Image 
-                  source={terminalOnibus} 
-                  style={styles.imagem}
-              />
-          </View>
+        <>          
           <View style={styles.containerMenu}> 
           <TouchableOpacity  onPress={navigateBack} style={styles.backButton}>
-                    <FontAwesome name="arrow-circle-left" size={35} color="#28405e" /> 
-                    
+                    <FontAwesome name="arrow-circle-left" size={35} color="#fff" />                     
                 </TouchableOpacity>
               <View style={styles.container}>
               <View style={styles.containerBotoes}>
-                  <TouchableOpacity style={styles.botao}>
+                  <TouchableOpacity onPress={sendWhatsapp} style={styles.botao}>
                     <FontAwesome name="whatsapp" size={70} color="#28405e" /> 
                     <Text style={styles.textoBotao}>WHATSAPP</Text>
-                    <Text style={styles.smallText}>Entre em contato</Text> 
+                    <FontAwesome name="angle-right" size={50} color="#28405e" />
+                    
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botao}>
+                <TouchableOpacity onPress={sendMail} style={styles.botao}>
                     <MaterialIcons name="email" size={70} color="#28405e" /> 
                     <Text style={styles.textoBotao}>E-MAIL</Text>
-                    <Text style={styles.smallText}>Entre em contato</Text> 
+                    <FontAwesome name="angle-right" size={50} color="#28405e" />
+                  
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botao}>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('StransSite')
+                    }} style={styles.botao}>
                     <FontAwesome name="external-link" size={70} color="#28405e" /> 
                     <Text style={styles.textoBotao}>API INTHEGRA</Text>
-                    <Text style={styles.smallText}>Site da API Inthegra</Text> 
+                    <FontAwesome name="angle-right" size={50} color="#28405e" />
+                    
                 </TouchableOpacity>
-                <TouchableOpacity  style={styles.botao}>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('GithubPage')
+                    }} style={styles.botao}>
                     <FontAwesome name="github" size={70} color="#28405e" /> 
                     <Text style={styles.textoBotao}>GITHUB</Text>
-                    <Text style={styles.smallText}>Repositório do código fonte</Text> 
+                    <FontAwesome name="angle-right" size={50} color="#28405e" />
+                    
                 </TouchableOpacity>
+                
                 </View>
               </View>
           </View>
@@ -72,41 +74,33 @@ function Main({ navigation }){
 const styles = StyleSheet.create({
     container : {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
     },
     containerBotoes: {
-      flexWrap: 'wrap',
-      flexDirection: 'row',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
     },
-    containerImage: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        margin: 50,           
-    },
-    imagem: {        
-        width: 250,
-        height: 250,        
-        borderRadius: 200,
-        borderColor: '#000'                       
-    },    
+        
     containerMenu: {              
         backgroundColor: 'rgba(219, 219, 219, 0.5)',
         position: 'absolute',
         width: '100%',
-        height: '100%', 
-                    
+        height: '100%',
     },
     botao:{
-        flexDirection: 'column',
-        justifyContent: 'center',        
-        margin: 5,
-        
-        height: '40%',
-        width: '45%',                
-        borderRadius: 5,        
+        flexDirection: 'row',
+        paddingLeft: 20,
+        paddingRight: 60,
+        justifyContent: 'space-between',        
+        marginHorizontal: 10,        
+        height: '18%',
+        width: '90%',
+        marginBottom: 10,  
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,              
+        borderTopRightRadius: 50,
+        borderBottomRightRadius: 50,      
         alignItems: "center",
         backgroundColor: '#FFF',        
         shadowColor: "#000000",
@@ -119,36 +113,35 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     textoBotao: {
+        flexWrap: "wrap",
         color: '#28405e',
         fontSize: 20, 
-        marginTop: 5, 
+        
         fontWeight: 'bold',
-        textAlign: 'center',
-        justifyContent: 'center',
+        
     },
     smallText: {
       fontSize: 12,
       color: '#28405e',
     },
     backButton: {
-      backgroundColor: '#FFF',
+      backgroundColor: '#28405e',
       height: 60,
       width: 60,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 15,
+      marginTop: 45,
       marginLeft: 15,
       borderRadius: 30,
-      alignItems: "center",
-        backgroundColor: '#FFF',        
-        shadowColor: "#000000",
-        shadowOffset: {
-            width: 0,
-            height: 3
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+      alignItems: "center",        
+      shadowColor: "#000000",
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
     
     

@@ -56,20 +56,30 @@ const Routes = createAppContainer(
         StransSite: {
             screen: StransSite,
             navigationOptions: {
-                title: 'SITE DA API DA STRANS',
+                headerShown: true,
+                headerTintColor: '#28405e',
+                title: 'Site da API STRANS',
                 headerTitleAlign: 'center',
-                headerTitleStyle: {
-                    color: '#fff'
+                headerStyle: {
+                    backgroundColor: 'rgba(219, 219, 219, 1)',
                 },
-            },            
+                headerTitleStyle: {
+                    color: '#28405e'
+                },
+            },              
         },
         GithubPage: {
             screen: GithubPage,
             navigationOptions: {
-                title: 'CÓDIGO FONTE',
+                headerShown: true,
+                headerTintColor: '#28405e',
+                title: 'Código fonte',
                 headerTitleAlign: 'center',
+                headerStyle: {
+                    backgroundColor: 'rgba(219, 219, 219, 1)',
+                },
                 headerTitleStyle: {
-                    color: '#fff'
+                    color: '#28405e'
                 },
             },            
         },
