@@ -1,96 +1,74 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image,  } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import {LinearGradient} from 'expo-linear-gradient';
+import { Dimensions } from 'react-native';
 
 
-import teresina from '../../assets/teresina.png';
+const largura = Math.round(Dimensions.get('window').width);
+const altura = Math.round(Dimensions.get('window').height);
+
+
+
 import logo from '../../assets/logo.png';
 
 function Main({ navigation }){ 
     return(
         <>
          
-        <View style={styles.containerImage}> 
+            <View style={styles.container}>
+             
+            <LinearGradient 
+                colors={['#6acc82', '#34ad52','#26873e', '#048022']} 
+                style={styles.header}
+            >  
+            </LinearGradient>    
+               <View style={styles.containerMenu}>
+                            <View style={styles.botoesCima}>
+                                <TouchableOpacity onPress={() => {
+                                        navigation.navigate('MapaTodosVeiculos')
+                                        }} style={styles.botao}>
+                                    <MaterialIcons name="location-on" size={50} color="#26873e" />
+                                    <Text style={styles.textoBotao}>RASTREADOR</Text>
+                                    <Text style={styles.smallText}>Localização em tempo real</Text>
+                                </TouchableOpacity> 
+                                    
+                            
+                                    <TouchableOpacity onPress={() => {
+                                        navigation.navigate('Linhas')
+                                        }} style={styles.botao}>
+                                        <MaterialIcons name="timeline" size={50} color="#26873e" />
+                                        <Text style={styles.textoBotao}>LINHAS</Text>
+                                        <Text style={styles.smallText}>Linhas de ônibus</Text>
+                                </TouchableOpacity>
+                             </View> 
+                             <View style={styles.botoesCima}>
+                                <TouchableOpacity style={styles.botao}>
+                                    <MaterialIcons name="stop" size={50} color="#26873e" />
+                                    <Text style={styles.textoBotao}>PARADAS</Text>
+                                    <Text style={styles.smallText}>Paradas de ônibus</Text>
+                                </TouchableOpacity> 
+                                    {/* <View style = {styles.hr}></View>           */}
+                            
+                                    <TouchableOpacity onPress={() => {
+                                        navigation.navigate('Sobre')
+                                        }} style={styles.botao}>
+                                        <MaterialIcons name="info" size={50} color="#26873e" />
+                                        <Text style={styles.textoBotao}>SOBRE</Text>
+                                        <Text style={styles.smallText}>Sobre o aplicativo</Text>
+                                       
+                                </TouchableOpacity>
+                             </View>   
+                      </View>
+                    </View>      
             <Image 
-                source={teresina} 
-                style={styles.ponte}
-                //blurType="dark"
-                //blurAmount={1}
-                blurRadius={1}
-            />
-        </View>
-        <View style={{position: 'absolute', marginLeft: 30,marginTop: 29,}}>
-            <Text>Versão: 0.6.2</Text>
-            </View>
-        <View style={styles.containerMenu}>
-                <Image 
-                    source={logo} 
-                    style={styles.logo}                    
-                />
-                <View style={{margin: 65}}></View> 
-            <TouchableOpacity onPress={() => {
-                navigation.navigate('MapaTodosVeiculos')
-                }} style={styles.botao}>
-                <MaterialIcons name="location-on" size={50} color="#28405e" />
-                <Text style={styles.textoBotao}>RASTREADOR</Text>
-                <View>
-                    <FontAwesome name="angle-right" size={50} color="#28405e" />
-                </View>
-              </TouchableOpacity>
-             
-            <View
-                style={{
-                    borderBottomColor: '#28405e',
-                    borderBottomWidth: 1,
-                    marginHorizontal: 20,                   
-                }}
-                />
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Linhas')
-                    }} style={styles.botao}>
-                    <MaterialIcons name="timeline" size={50} color="#28405e" />
-                    <Text style={styles.textoBotao}>LINHAS</Text>
-                    <View>
-                        <FontAwesome name="angle-right" size={50} color="#28405e" />
-                    </View>
-              </TouchableOpacity>
-                
-            <View
-                style={{
-                    borderBottomColor: '#28405e',
-                    borderBottomWidth: 1,
-                    marginHorizontal: 20,                    
-                }}
-            />
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Paradas')
-                    }} style={styles.botao}>
-                <FontAwesome name="stop-circle-o" size={50} color="#28405e" />
-                <Text style={styles.textoBotao}>PARADAS</Text>
-                <View>
-                    <FontAwesome name="angle-right" size={50} color="#28405e" />
-                </View>
-              </TouchableOpacity>
-             
-            <View
-                style={{
-                    borderBottomColor: '#28405e',
-                    borderBottomWidth: 1,
-                    marginHorizontal: 20,                   
-                }}
-                />
-                <TouchableOpacity onPress={() => {
-                    navigation.navigate('Sobre')
-                    }} style={styles.botao}>
-                <MaterialIcons name="info-outline" size={50} color="#28405e" />
-                <Text style={styles.textoBotao}>SOBRE</Text>                             
-                
-                    <FontAwesome name="angle-right" size={50} color="#28405e" />                 
-                    
-              </TouchableOpacity>
-                               
-        </View>
+                        source={logo} 
+                        style={styles.logo}
+                        //blurType="dark"
+                        //blurAmount={1}
+                        blurRadius={1}
+                    />
               
     </>
 )}
@@ -98,63 +76,81 @@ function Main({ navigation }){
 const styles = StyleSheet.create({
     container : {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',            
+        justifyContent: 'flex-start',
+        alignItems: 'center',        
+        backgroundColor: '#fff', 
+                     
     },
-    containerImage: {
-        flex: 1,           
-        flexDirection: 'column',
-        justifyContent: 'flex-end',                   
-    },
-    ponte: {        
-        width: '100%',
-        height: "30%",        
-        borderTopLeftRadius: 200,
-        borderTopRightRadius: 200,                
-    },    
-    containerMenu: {              
-        backgroundColor: 'rgba(219, 219, 219, 0.5)',
+    logo:{
+        width: largura,
+        height: 100,
+        marginTop: 50,
         position: 'absolute',
+        justifyContent: 'flex-start',
+
+    },   
+    header: {
         width: '100%',
-        height: '100%',              
+        height: '30%',
+        borderBottomLeftRadius: 300, 
+        borderBottomRightRadius: 300,       
+        transform: [
+          {scaleX: 2}
+        ]
+    },
+    containerMenu: {        
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '95%',
+        marginTop: 25,        
     },
     botao:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 50,
-        marginTop: 20,
-        marginBottom: 20,
-        height: 40,                 
-        borderRadius: 5,        
-        alignItems: "center",        
-        // shadowColor: "#000000",
-        // shadowOffset: {
-        //     width: 0,
-        //     height: 2
-        // },
-        // shadowOpacity: 0.25,
-        // shadowRadius: 3.84,
-        // elevation: 5,
+        height: altura/4.5,
+        width: largura/2.4,
+        margin: 10,
+        alignItems: "center",
+        justifyContent: 'center',
+        backgroundColor: '#ffffff', 
+        borderRadius: 15,
+        borderWidth: 2,
+        borderColor: '#26873e',
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        
     },
     textoBotao: {
-        color: '#28405e',
-        fontSize: 20,  
+        color: '#03290c',
+        fontSize: 16,
+        marginTop: 10,
+        marginBottom: 5,  
         fontWeight: 'bold',
         textAlign: 'center',
         justifyContent: 'center',
     },
+    botoesCima: {
+        flexDirection: 'row',       
+        
+    },
     smallText: {
         fontSize:12,       
-        color: '#657b9e',        
+        color: '#03290c',        
+    },     
+    hr: {
+        borderBottomColor: "#031521", 
+        borderBottomWidth: 1,
+        width: "100%"
+  },
+    linearGradient: {
+        flex: 1,
+        
     },
-    logo: {
-        marginTop: 30,        
-        height: 100,
-        width: '100%',
-        position: 'absolute',
-        alignItems: "center", 
-        justifyContent: 'center',
-    },    
+    
 });
 
 export default Main;

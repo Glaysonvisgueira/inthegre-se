@@ -9,9 +9,10 @@ YellowBox.ignoreWarnings([
 ]);
 
 export default function App() {
+  
   return (
     <>    
-    <StatusBar barStyle="dark-content" backgroundColor="rgba(219, 219, 219, 0.6)"/> 
+    <StatusBar barStyle="dark-content" translucent={true} backgroundColor="transparent" /> 
     <Routes />
     </>
   );

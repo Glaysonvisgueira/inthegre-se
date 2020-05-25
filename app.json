@@ -16,7 +16,7 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#AEBED1"
-    },
+    },   
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -34,6 +34,6 @@
           "apiKey": ""
         }
       }
-    }    
+    }
   }
 }

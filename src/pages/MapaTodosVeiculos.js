@@ -41,15 +41,6 @@ function Main({ navigation }){
     
     useEffect(() => {
             async function localizarOnibus(){
-                        // if (quantidadeOnibus.length > 0 && quantidadeOnibus.length === localizacoesAtuais.length){
-                        //     return;
-                        // }
-
-                        // if (localizacoesAtuais.length === 0){
-
-                        // }else(quantidadeOnibus.length === localizacoesAtuais.length){
-                        //     return;
-                        // } 
 
                         var frota = [];
                         let config = getHeaders();
@@ -115,7 +106,14 @@ function Main({ navigation }){
 
     return(  
         <>
-        <MapView mapType={'standard'} initialRegion={currentRegion} style={styles.map} showsUserLocation={true}>
+        <MapView 
+            mapType={'standard'} 
+            initialRegion={currentRegion} 
+            style={styles.map} 
+            showsUserLocation={true}
+            userLocationPriority="high"
+            showsMyLocationButton={false}
+        >
         
         {localizacoesAtuais.map((veiculo, index) => (
           <Marker
@@ -143,28 +141,13 @@ function Main({ navigation }){
             <View style={styles.containerText}>                
                 <Text style={styles.text}>Quantidade de ônibus em rota: {quantidadeOnibus}</Text>               
             </View>
-           <View style={styles.containerButtons}>
-           
-                <TouchableOpacity  onPress={navigateBack} style={styles.backButton}>
-                    <FontAwesome name="arrow-circle-left" size={35} color="#fff" /> 
-                    
-                </TouchableOpacity>
-                
-                    <TouchableOpacity onPress={() => {
-                        setModalVisible(true);
-                        }} style={styles.infoService}>
-                        <MaterialIcons name="info" size={35} color="#fff" />
-                    </TouchableOpacity>  
-                    
-            </View>
-
              <View style={styles.centeredView}>
                 <Modal
-                    animationType="slide"
+                    animationType="fade"
                     transparent={true}
                     visible={modalVisible}
                     onRequestClose={() => {
-                    Alert.alert("Janela fechada.");
+                        Alert.alert("Janela fechada.");
                     }}
                      >
                     <View style={styles.centeredView}>
@@ -183,6 +166,20 @@ function Main({ navigation }){
                     </View>
                 </Modal>
     </View>
+
+    <View style={styles.containerButtons}>
+           
+                <TouchableOpacity onPress={navigateBack} style={styles.backButton}>
+                      <MaterialIcons name="arrow-back" size={35} color="#048022" />
+                    </TouchableOpacity>
+                
+                    <TouchableOpacity onPress={() => {
+                        setModalVisible(true);
+                        }} style={styles.infoService}>
+                        <MaterialIcons name="info" size={35} color="#048022" />
+                    </TouchableOpacity>  
+                    
+            </View>
               
       
       </>
@@ -197,7 +194,7 @@ const styles = StyleSheet.create({
         width: 26,
         height: 26,
         borderRadius: 25,
-        borderColor: '#28405e',
+        borderColor: '#048022',
         borderWidth: 2,        
     },
     callout: {
@@ -207,7 +204,7 @@ const styles = StyleSheet.create({
     },    
     info: {
         fontSize: 13,
-        color: '#28405e',    
+        color: '#048022',    
     },
     infoTitulo: {
         fontWeight: 'bold',
@@ -236,7 +233,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 17,
         color: '#fff', 
-        backgroundColor: '#28405e',
+        backgroundColor: '#048022',
         borderRadius: 5,
         padding: 5,        
         width: '100%',
@@ -244,25 +241,8 @@ const styles = StyleSheet.create({
     },
     infoRetorno:{
         fontWeight: 'bold',
-        color: '#28405e',
-    },
-    infoService: {
-        flexDirection :'column',
-        width: 60,
-        height: 60,
-        backgroundColor: '#28405e',
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,       
-    },
+        color: '#048022',
+    },    
     centeredView: {
         position: 'absolute',
         justifyContent: 'center',        
@@ -275,7 +255,7 @@ const styles = StyleSheet.create({
     modalView: {
         width: '85%',
         borderWidth: 1,
-        borderColor: "#28405e",        
+        borderColor: "#048022",        
         backgroundColor: "#fff",
         borderRadius: 5,
         padding: 35,
@@ -292,7 +272,7 @@ const styles = StyleSheet.create({
         
     },
     openButton: {
-        backgroundColor: "#28405e",
+        backgroundColor: "#048022",
         borderRadius: 5,
         padding: 10,
         paddingLeft: 30,
@@ -311,25 +291,42 @@ const styles = StyleSheet.create({
         textAlign: "justify",
         color: '#28405e',
     },
-    backButton: {
-        backgroundColor: '#28405e',
-        height: 60,
-        width: 60,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 12,
+    infoService: {
+        padding: 5,
+        marginTop: 60,
+        backgroundColor: '#fff',
         borderRadius: 30,
-        alignItems: "center",
-            
-          shadowColor: "#000000",
-          shadowOffset: {
-              width: 0,
-              height: 3
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,       
+    },
+    backButton:{
+      position: 'absolute',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',  
+    //   marginTop: 30,
+    //   marginLeft: 15,
+      backgroundColor: '#fff',
+      borderRadius: 30,
+      padding: 3,
+      shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3
           },
-          shadowOpacity: 0.25,
+      shadowOpacity: 0.25,
           shadowRadius: 3.84,
           elevation: 5,
-      },  
+    },
+     
 });
 
 

@@ -1,0 +1,6 @@
+Adicionar linking para telefone 
+Adicionar linking para sms
+Utilizar toast android
+BackHandler no mapa
+Utilizar layout animation
+Drawrmenu

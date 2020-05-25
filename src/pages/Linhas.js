@@ -1,20 +1,21 @@
 import React, { useState, useEffect} from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, FlatList, SafeAreaView, TextInput  } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient';
+import { Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+
 import api from '../services/Inthegra.js'
 import { getHeaders, getToken, email, senha, api_key } from '../services/Inthegra';
 
 
-function Linhas({ navigation }){
+const largura = Math.round(Dimensions.get('window').width);
+const altura = Math.round(Dimensions.get('window').height);
+
+function Main({ navigation }){ 
 
     const [linhasDeOnibus, setLinhas] = useState([]);
     const [totalLinhas, setTotalLinhas] = useState(0);
 
-    function navigateBack() {
-        navigation.goBack()
-      }
-  
     class Linha{ 
         constructor(CodigoLinha, Denomicao, Origem, Retorno, Circular){
             this.CodigoLinha = CodigoLinha;
@@ -24,7 +25,7 @@ function Linhas({ navigation }){
             this.Circular = Circular;                
         }  
     } 
-            
+
     async function localizarTodasLinhas(){
         var linhas = [];
         let config = getHeaders();
@@ -45,72 +46,88 @@ function Linhas({ navigation }){
                 setLinhas(linhas);
             })
         }
-        //console.log(linhasDeOnibus);
-    
+
+    function navigateBack() {
+      navigation.goBack()
+    }
+
     useEffect(() => {  
             localizarTodasLinhas();
             setTotalLinhas(linhasDeOnibus.length);          
     }, [linhasDeOnibus]); 
 
     return(
-        <View style={styles.container}>
-            <TouchableOpacity  onPress={navigateBack} style={styles.backButton}>
-                    <FontAwesome name="arrow-circle-left" size={35} color="#fff" /> 
-                    
-                </TouchableOpacity>
-          
-            <View style={styles.textCountContainer}>
-                <Text style={styles.textQtdLinhas}>Total de linhas: <Text style={{fontWeight:'bold'}}>{totalLinhas}</Text></Text>
-            </View>            
-            <View
-            style={{
-                borderBottomColor: '#28405e',
-                borderBottomWidth: 1,
-                marginTop: 10,
-                marginHorizontal: 20,
-            }}
-            />
-            <FlatList 
-                data={linhasDeOnibus}                
-                style={{marginTop: 15}}
-                keyExtractor={(item, index) => index.toString()}
-                 renderItem={({item: linha}) => (
-                    <View style={styles.containerList}> 
-                    <Text style={styles.textLinha}>Código da linha: <Text style={{fontWeight: 'bold'}}>{linha.CodigoLinha}</Text></Text>
-                    <Text style={styles.textLinha}>Nome da linha: <Text style={{fontWeight: 'bold'}}>{linha.Denomicao}</Text></Text>
-                    <Text style={styles.textLinha}>Origem: <Text style={{fontWeight: 'bold'}}>{linha.Origem}</Text></Text>
-                    <Text style={styles.textLinha}>Retorno: <Text style={{fontWeight: 'bold'}}>{linha.Retorno}</Text></Text>                 
+        <>
+         
+            <View style={styles.container}>
+             
+            <LinearGradient colors={['#6acc82', '#34ad52','#26873e', '#048022']} style={styles.header} /> 
+                   
+                  {/* <View style={styles.containerMenu}>       */}
+                    <FlatList 
+                        data={linhasDeOnibus}                
+                        style={{marginTop: -120}}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({item: linha}) => (
+                            <View style={styles.containerList}> 
+                            <Text style={styles.textLinha}>Código da linha: <Text style={{fontWeight: 'bold'}}>{linha.CodigoLinha}</Text></Text>
+                            <Text style={styles.textLinha}>Nome da linha: <Text style={{fontWeight: 'bold'}}>{linha.Denomicao}</Text></Text>
+                            <Text style={styles.textLinha}>Origem: <Text style={{fontWeight: 'bold'}}>{linha.Origem}</Text></Text>
+                            <Text style={styles.textLinha}>Retorno: <Text style={{fontWeight: 'bold'}}>{linha.Retorno}</Text></Text>                 
                    </View>
-                 )} />
-        <View style={{marginTop:110}}></View>
-        <SafeAreaView style={styles.searchForm}>
-        <TextInput 
-          style={styles.searchInput}
-          placeholder="Procurar linha..."
-          placeholderTextColor="#5a748c"
-          autoCapitalize="words"
-          autoCorrect={true}  
-          maxLength={50}       
-        />
+                 )} /> 
+                              
+                      {/* </View> */}
+                            
+             </View> 
+                    <TouchableOpacity onPress={navigateBack} style={styles.backButton}>
+                      <MaterialIcons name="arrow-back" size={35} color="#048022" />
+                    </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loadButton}>
-          <MaterialIcons name="search" size={30} color="#fff" />
-        </TouchableOpacity>
-      </SafeAreaView>
-          
-        </View>
-    ); 
-}
+                    <View style={styles.textCountContainer}>
+                        <Text style={styles.textQtdLinhas}>{totalLinhas} Linhas encontradas</Text> 
+                    </View>
+           
+              
+    </>
+    )}
 
 const styles = StyleSheet.create({
-    container: {
+    container : {
         flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'rgba(219, 219, 219, 0.5)',          
+        justifyContent: 'flex-start',
+        alignItems: 'center',        
+        backgroundColor: '#d9d9d9',
+    },
+    textCountContainer: {
+        position: 'absolute',
+        flexDirection: 'row-reverse',        
+        alignItems: 'flex-start',
+        right: 25,
+        top: 55,
+    },
+    textQtdLinhas: {
+        color: '#048022',
+        // position: 'absolute',
+        fontSize:15,        
+        fontWeight: 'bold',
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        padding: 5,
+        paddingHorizontal: 10,
+         
+    },
+    logo:{
+        width: largura,
+        height: 100,
+        marginTop: 50,
+        position: 'absolute',
+        justifyContent: 'flex-start',
+
     },
     containerList: {
         padding: 15,
-        borderRadius: 6,
+        borderRadius: 8,
         backgroundColor: '#FFF',
         marginBottom: 10,
         marginHorizontal: 20,
@@ -122,87 +139,57 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,       
+    },   
+    header: {
+        width: '100%',
+        height: '30%',
+        borderBottomLeftRadius: 300, 
+        borderBottomRightRadius: 300,       
+        transform: [
+          {scaleX: 2}
+        ]
+    },
+    containerMenu: {        
+        alignItems: 'center',        
+        marginTop: '25%',
+        width: '90%',
+        position: 'absolute',       
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        paddingHorizontal: 20,
+    },    
+    backButton:{
+      position: 'absolute',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',  
+      marginTop: 45,
+      marginLeft: 15,
+      backgroundColor: '#fff',
+      borderRadius: 20,
+      padding: 3,
+      shadowColor: "#000000",
+      shadowOffset: {
+          width: 0,
+          height: 3
+        },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
     textLinha: {
+        color: '#525252',
         fontSize: 12,
-        color: '#28405e',         
-    },
-    textQtdLinhas: {
-        color: '#fff',
-        fontSize:15,        
-        fontWeight: 'bold',
-        backgroundColor: '#28405e',
-        padding: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-        borderRadius: 15,
-    },
-    textCountContainer: {
-        alignItems: 'flex-end',
-        marginTop: 0,
-        marginRight: 30,        
-    },
-    searchForm: {
-        position: 'absolute',
-        bottom: 40,
-        left: 20,
-        right: 20,        
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-    },
-    searchInput: {
-        flex: 1,
-        height: 50,       
-        backgroundColor: '#FFF',
-        color: '#28405e',
-        borderRadius: 25,
-        paddingHorizontal: 20,
-        fontSize: 17,
-        shadowColor: '#000',
-        shadowOpacity: 0.5,
-        shadowOffset: {
-            width: 4,
-            height: 4
-        },
-        elevation: 3
-    },
-    loadButton: {
-        width: 50,
-        height: 50,
-        backgroundColor: '#28405e',
-        borderRadius: 25,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 15,
-        shadowColor: "#000000",
-        shadowOffset: {
-        width: 0,
-        height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5, 
-    },
-    backButton: {
-        backgroundColor: '#28405e',
-        height: 60,
-        width: 60,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 45,
-        marginLeft: 15,
-        borderRadius: 30,
-        alignItems: "center",     
-          shadowColor: "#000000",
-          shadowOffset: {
-              width: 0,
-              height: 3
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-          elevation: 5,
-      },
+    },    
+    smallText: {
+        fontSize:12,       
+        color: '#03290c',        
+    },     
+    linearGradient: {
+        flex: 1,        
+    },  
 });
 
 
-export default Linhas;
+export default Main;
