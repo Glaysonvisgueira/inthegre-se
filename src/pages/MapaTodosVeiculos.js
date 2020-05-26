@@ -4,8 +4,10 @@ import MapView, { Marker, Callout } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+
 import api from '../services/Inthegra.js'
 import { getHeaders, getToken, email, senha, api_key } from '../services/Inthegra';
+
 import busIcon from '../../assets/vector-bus-icon.jpg'
 
 function Main({ navigation }){
