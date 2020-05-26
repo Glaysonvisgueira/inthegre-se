@@ -155,7 +155,7 @@ function Main({ navigation }){
                     <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>As informações exibidas por este aplicativo são fornecidas através da API de monitoramento de
-                         frota da Superintendência Municipal de Transportes e Trânsito (STRANS) de Teresina - PI. A atualização acontece a cada trinta segundos.</Text>
+                         frota da Superintendência Municipal de Transportes e Trânsito (STRANS) de Teresina - PI. A atualização do posicionamentdo dos veículos acontece a cada trinta segundos.</Text>
                         <TouchableOpacity
                         style={styles.openButton}
                         onPress={() => {
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 16,
         textAlign: "justify",
-        color: '#28405e',
+        color: '#048022',
     },
     infoService: {
         padding: 5,

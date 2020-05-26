@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',        
-        backgroundColor: '#d9d9d9',
+        backgroundColor: '#fff',
     },
     textCountContainer: {
         position: 'absolute',

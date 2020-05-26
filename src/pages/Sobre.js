@@ -63,7 +63,7 @@ function Main({ navigation }){
                      </TouchableOpacity>
                                    <View
                                       style={{
-                                        borderBottomColor: '#666666',
+                                        borderBottomColor: '#26873e',
                                         borderBottomWidth: 0.7,
                                         width: '100%',
                                       }}
@@ -76,7 +76,7 @@ function Main({ navigation }){
                                     </TouchableOpacity>
                              <View
                                       style={{
-                                        borderBottomColor: '#666666',
+                                        borderBottomColor: '#26873e',
                                         borderBottomWidth: 0.7,
                                         width: '100%',
                                       }}
@@ -91,7 +91,7 @@ function Main({ navigation }){
                                 </TouchableOpacity>
                                     <View
                                       style={{
-                                        borderBottomColor: '#666666',
+                                        borderBottomColor: '#26873e',
                                         borderBottomWidth: 0.7,
                                         width: '100%',
                                       }}
@@ -106,13 +106,13 @@ function Main({ navigation }){
                                 </TouchableOpacity>
                                 <View
                                       style={{
-                                        borderBottomColor: '#666666',
+                                        borderBottomColor: '#26873e',
                                         borderBottomWidth: 0.7,
                                         width: '100%',
                                       }}
                                     />
                                 <TouchableOpacity onPress={sendSMS} style={styles.botao}>
-                                  <FontAwesome name="whatsapp" size={50} color="#26873e" /> 
+                                  <MaterialIcons name="textsms" size={50} color="#26873e" /> 
                                   <Text style={styles.textoBotao}>SMS</Text>  
                                   <FontAwesome name="angle-right" size={50} color="#26873e" />                               
                                 </TouchableOpacity> 
@@ -154,8 +154,7 @@ const styles = StyleSheet.create({
         ]
     },
     containerMenu: {        
-        alignItems: 'center',        
-        
+        alignItems: 'center',
         width: '100%',
         marginTop: 25,    
         backgroundColor: '#fff',  
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         
         height: altura/10,
-        width: '80%',        
+        width: '75%',        
         alignItems: "center",        
         backgroundColor: '#fff', 
     },
@@ -191,7 +190,7 @@ const styles = StyleSheet.create({
       elevation: 5,
     },
     textoBotao: {
-        color: '#03290c',
+        color: '#26873e',
         fontSize: 16,          
         fontWeight: 'bold',
         textAlign: 'center',
