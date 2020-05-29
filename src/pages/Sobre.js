@@ -11,6 +11,8 @@ import * as MailComposer from 'expo-mail-composer';
 const largura = Math.round(Dimensions.get('window').width);
 const altura = Math.round(Dimensions.get('window').height);
 
+import onibusImg from '../../assets/onibusImagem.png';
+
 function Main({ navigation }){ 
 
     //Mensagem a ser enviada nos módulos de SMS, Whatsapp e E-mail
@@ -52,78 +54,82 @@ function Main({ navigation }){
         <>
          
             <View style={styles.container}>
-             
-            <LinearGradient colors={['#6acc82', '#34ad52','#26873e', '#048022']} style={styles.header} /> 
-                   
+            
+            <LinearGradient colors={['#04d361', '#05b353','#039143']} style={styles.header} /> 
+                    <Image 
+                          source={onibusImg} 
+                          style={styles.img}
+                      /> 
                   <View style={styles.containerMenu}>      
                     <TouchableOpacity onPress={sendWhatsapp} style={styles.botao}>
-                                <FontAwesome name="whatsapp" size={50} color="#26873e" /> 
+                                <FontAwesome name="whatsapp" size={50} color="#636363" /> 
                                 <Text style={styles.textoBotao}>WHATSAPP</Text>
-                                <FontAwesome name="angle-right" size={50} color="#26873e" />
+                                <FontAwesome name="angle-right" size={50} color="#636363" />
                      </TouchableOpacity>
                                    <View
                                       style={{
-                                        borderBottomColor: '#26873e',
+                                        borderBottomColor: '#636363',
                                         borderBottomWidth: 0.7,
-                                        width: '100%',
+                                        width: '85%',
                                       }}
                                     />
                             
                                     <TouchableOpacity onPress={sendMail} style={styles.botao}>
-                                      <MaterialIcons name="email" size={50} color="#26873e" /> 
+                                      <MaterialIcons name="email" size={50} color="#636363" /> 
                                       <Text style={styles.textoBotao}>E-MAIL</Text>
-                                     <FontAwesome name="angle-right" size={50} color="#26873e" />
+                                     <FontAwesome name="angle-right" size={50} color="#636363" />
                                     </TouchableOpacity>
                              <View
                                       style={{
-                                        borderBottomColor: '#26873e',
+                                        borderBottomColor: '#636363',
                                         borderBottomWidth: 0.7,
-                                        width: '100%',
+                                        width: '85%',
                                       }}
                                     />
                             
                                 <TouchableOpacity onPress={() => {
                                     navigation.navigate('StransSite')
                                     }}  style={styles.botao}>
-                                  <FontAwesome name="external-link" size={50} color="#26873e" /> 
+                                  <FontAwesome name="external-link" size={50} color="#636363" /> 
                                   <Text style={styles.textoBotao}>API INTHEGRA</Text>
-                                  <FontAwesome name="angle-right" size={50} color="#26873e" />
+                                  <FontAwesome name="angle-right" size={50} color="#636363" />
                                 </TouchableOpacity>
                                     <View
                                       style={{
-                                        borderBottomColor: '#26873e',
+                                        borderBottomColor: '#636363',
                                         borderBottomWidth: 0.7,
-                                        width: '100%',
+                                        width: '85%',
                                       }}
                                     />
                             
                                 <TouchableOpacity onPress={() => {
                                   navigation.navigate('GithubPage')
                                 }}  style={styles.botao}>
-                                    <FontAwesome name="github" size={50} color="#26873e" /> 
+                                    <FontAwesome name="github" size={50} color="#636363" /> 
                                     <Text style={styles.textoBotao}>GITHUB</Text>
-                                   <FontAwesome name="angle-right" size={50} color="#26873e" />
+                                   <FontAwesome name="angle-right" size={50} color="#636363" />
                                 </TouchableOpacity>
                                 <View
                                       style={{
-                                        borderBottomColor: '#26873e',
+                                        borderBottomColor: '#636363',
                                         borderBottomWidth: 0.7,
-                                        width: '100%',
+                                        width: '85%',
                                       }}
                                     />
                                 <TouchableOpacity onPress={sendSMS} style={styles.botao}>
-                                  <MaterialIcons name="textsms" size={50} color="#26873e" /> 
+                                  <MaterialIcons name="textsms" size={50} color="#636363" /> 
                                   <Text style={styles.textoBotao}>SMS</Text>  
-                                  <FontAwesome name="angle-right" size={50} color="#26873e" />                               
+                                  <FontAwesome name="angle-right" size={50} color="#636363" />                               
                                 </TouchableOpacity> 
                               
                       </View>
                             
                     </View> 
                     <TouchableOpacity onPress={navigateBack} style={styles.backButton}>
-                      <MaterialIcons name="arrow-back" size={35} color="#26873e" />
-                    </TouchableOpacity>     
-           
+                      <MaterialIcons name="arrow-back" size={35} color="#03290c" />
+                    </TouchableOpacity>
+                      
+                  
               
     </>
     )}
@@ -131,10 +137,17 @@ function Main({ navigation }){
 const styles = StyleSheet.create({
     container : {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         alignItems: 'center',        
         backgroundColor: '#fff', 
                      
+    },
+    img:{
+        width: 300,
+        height: 300,
+        position: 'absolute', 
+        marginTop: 60,
+        borderRadius: 150,
     },
     logo:{
         width: largura,
@@ -142,7 +155,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
         position: 'absolute',
         justifyContent: 'flex-start',
-
     },   
     header: {
         width: '100%',
@@ -157,7 +169,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         marginTop: 25,    
-        backgroundColor: '#fff',  
+        backgroundColor: '#fff',
+        borderTopLeftRadius: 40,  
+        borderTopRightRadius: 40,
              
         
     },
@@ -190,9 +204,9 @@ const styles = StyleSheet.create({
       elevation: 5,
     },
     textoBotao: {
-        color: '#26873e',
-        fontSize: 16,          
-        fontWeight: 'bold',
+        color: '#03290c',
+        fontSize: 20,          
+        fontFamily: 'MavenProRegular',
         textAlign: 'center',
         justifyContent: 'center',
     },
@@ -202,7 +216,7 @@ const styles = StyleSheet.create({
     },
     smallText: {
         fontSize:12,       
-        color: '#03290c',        
+        color: '#3b3b3b',        
     },     
     linearGradient: {
         flex: 1,

@@ -283,11 +283,11 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         color: "#fff",
-        fontWeight: "bold",
+        fontFamily: 'MontserratMedium',
         textAlign: "center"
     },
     modalText: {
-        fontWeight: 'bold',
+        fontFamily: 'MontserratMedium',
         marginBottom: 15,
         fontSize: 16,
         textAlign: "justify",

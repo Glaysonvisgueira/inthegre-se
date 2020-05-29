@@ -50,21 +50,19 @@ const Routes = createAppContainer(
         },
         Sobre: {
             screen: Sobre,
-                         
-            
         },
         StransSite: {
             screen: StransSite,
             navigationOptions: {
                 headerShown: true,
-                headerTintColor: '#28405e',
+                headerTintColor: '#000',
                 title: 'Site da API STRANS',
                 headerTitleAlign: 'center',
                 headerStyle: {
-                    backgroundColor: 'rgba(219, 219, 219, 1)',
+                    backgroundColor: '#04d361',
                 },
                 headerTitleStyle: {
-                    color: '#28405e'
+                    color: '#000'
                 },
             },              
         },
@@ -72,14 +70,14 @@ const Routes = createAppContainer(
             screen: GithubPage,
             navigationOptions: {
                 headerShown: true,
-                headerTintColor: '#28405e',
+                headerTintColor: '#000',
                 title: 'Código fonte',
                 headerTitleAlign: 'center',
                 headerStyle: {
-                    backgroundColor: 'rgba(219, 219, 219, 1)',
+                    backgroundColor: '#04d361',
                 },
                 headerTitleStyle: {
-                    color: '#28405e'
+                    color: '#000'
                 },
             },            
         },
