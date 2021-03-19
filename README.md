@@ -1,6 +1,6 @@
 Aplicativo escrito em React Native para monitoramento da frota de ônibus da cidade de Teresina - PI.</br>
 
-<h3>Status de desenvolvimento <span>updated: 19/03/2021</span>: Descontinuado</h3>
+<h3>Status de desenvolvimento <a style="color:#6a6a6b;">updated: 19/03/2021</a>: <a style="color:red;">Descontinuado</a></h3>
 <p>STRANS de Teresina - PI desativou a API que fornecia os dados em tempo real da frota da cidade durante os primeiros meses de pandemia, mediante a redução da circulação de ônibus na cidade.</p>
 
 
